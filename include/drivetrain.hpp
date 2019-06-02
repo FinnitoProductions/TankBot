@@ -9,10 +9,11 @@
 #include <vector>
 #include <digital_motor.hpp>
 
-const char FORWARD_CHAR = 'W';
-const char REVERSE_CHAR = 'S';
-const char LEFT_CHAR = 'A';
-const char RIGHT_CHAR = 'D';
+const char FORWARD_CHAR = 'w';
+const char REVERSE_CHAR = 's';
+const char LEFT_CHAR = 'a';
+const char RIGHT_CHAR = 'd';
+const char STOP_CHAR = 'o';
 const char MAX_DIGITAL_OUTPUT = 1; // the maximum output percent when the motors are being enabled as on/off
 
 class Drivetrain : public Subsystem {

@@ -19,7 +19,10 @@ int main() {
 
    Drivetrain drivetrain({DigitalMotor(FORWARD_LEFT_DRIVE, REVERSE_LEFT_DRIVE, ENABLE_LEFT_DRIVE)}, 
                          {DigitalMotor(FORWARD_RIGHT_DRIVE, REVERSE_RIGHT_DRIVE, ENABLE_RIGHT_DRIVE)});
-
+   while (true) {
+      drivetrain.periodic();
+      std::this_thread::sleep_for(std::chrono::seconds(1));
+   }
    
    gpioTerminate(); 
 }

@@ -18,16 +18,24 @@ void Drivetrain::periodic() {
    std::cin >> x;
 
    if (x == FORWARD_CHAR) {
+      std::cout << "forward" << std::endl;
       setBothOutputs(MAX_DIGITAL_OUTPUT, MAX_DIGITAL_OUTPUT);
    }
    else if (x == REVERSE_CHAR) {
+      std::cout << "reverse" << std::endl;
       setBothOutputs(-MAX_DIGITAL_OUTPUT, -MAX_DIGITAL_OUTPUT);
    }
    else if (x == LEFT_CHAR) {
+      std::cout << "left" << std::endl;
       setBothOutputs(-MAX_DIGITAL_OUTPUT, MAX_DIGITAL_OUTPUT);
    }
    else if (x == RIGHT_CHAR) {
+      std::cout << "right" << std::endl;
       setBothOutputs(MAX_DIGITAL_OUTPUT, -MAX_DIGITAL_OUTPUT);
+   }
+   else if (x == STOP_CHAR) {
+      std::cout << "stop" << std::endl;
+      setBothOutputs(0, 0);
    }
 }
 
