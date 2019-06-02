@@ -9,13 +9,14 @@
 #include <iostream>
 #include <motor.hpp>
 #include <robot_map.hpp>
+#include <drivetrain.hpp>
 
 int main() {
    std::cout << "Testing driving!" << std::endl;
    gpioInitialise(); // must be called in any pigpio program before interfacing with GPIO
 
-   Motor leftMotor(FORWARD_LEFT_DRIVE, REVERSE_LEFT_DRIVE, ENABLE_LEFT_DRIVE);
-   Motor rightMotor(FORWARD_RIGHT_DRIVE, REVERSE_RIGHT_DRIVE, ENABLE_RIGHT_DRIVE);
-   
-   gpioTerminate();
+   Drivetrain drivetrain({Motor(FORWARD_LEFT_DRIVE, REVERSE_LEFT_DRIVE, ENABLE_LEFT_DRIVE)}, 
+                         {Motor(FORWARD_RIGHT_DRIVE, REVERSE_RIGHT_DRIVE, ENABLE_RIGHT_DRIVE)});
+
+   gpioTerminate(); 
 }
