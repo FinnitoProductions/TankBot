@@ -9,6 +9,9 @@
 #include <vector>
 #include <digital_motor.hpp>
 
+#ifndef DRIVETRAIN_H
+#define DRIVETRAIN_H
+
 const char FORWARD_CHAR = 'w';
 const char REVERSE_CHAR = 's';
 const char LEFT_CHAR = 'a';
@@ -25,3 +28,5 @@ class Drivetrain : public Subsystem {
       std::vector<DigitalMotor> leftMotors;
       std::vector<DigitalMotor> rightMotors;
 };
+
+#endif // DRIVETRAIN_H
