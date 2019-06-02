@@ -5,28 +5,28 @@
  * @since 6/1/19
 */
 
-#include <motor.hpp>
-#include <pigpio.h>
+#include <digital_motor.hpp>
+
 
 /**
 * Constructs a new motor object.
-*
+* 
 * @param forward_pin the GPIO pin through which forward output will be enabled on the H-bridge
 * @param backward_pin the GPIO pin through which backward output will be enabled on the H-bridge
 * @param reverse_pin the GPIO pin through which the magnitude of the output will be specified to the H-bridge (via PWM)
 */
-Motor::Motor(const int forward_pin, const int reverse_pin, const int enable_pin) : FORWARD_PIN(forward_pin), REVERSE_PIN(reverse_pin), ENABLE_PIN(enable_pin) {
+DigitalMotor::DigitalMotor(const int forward_pin, const int reverse_pin, const int enable_pin) : FORWARD_PIN(forward_pin), REVERSE_PIN(reverse_pin), ENABLE_PIN(enable_pin) {
    gpioSetMode(FORWARD_PIN, PI_OUTPUT);
-   gpioSetMode(REVERSE_PIN, PI_OUTPUT);
+   gpioSetMode(REVERSE_PIN, PI_OUTPUT); 
    gpioSetMode(ENABLE_PIN, PI_OUTPUT);
-}
+} 
 
 /**
 * Drives the motor forward at a given speed.
 *
 * @param output the output at which to drive the motor [-1, 1]
 */
-void Motor::setOutput (const double output) {
+void DigitalMotor::setOutput (const double output) {
    if (output > 0) {
       gpioWrite(FORWARD_PIN, PI_ON);
       gpioWrite(REVERSE_PIN, PI_OFF);

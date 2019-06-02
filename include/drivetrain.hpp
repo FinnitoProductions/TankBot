@@ -7,7 +7,7 @@
 
 #include <subsystem.hpp>
 #include <vector>
-#include <motor.hpp>
+#include <digital_motor.hpp>
 
 const char FORWARD_CHAR = 'W';
 const char REVERSE_CHAR = 'S';
@@ -17,10 +17,10 @@ const char MAX_DIGITAL_OUTPUT = 1; // the maximum output percent when the motors
 
 class Drivetrain : public Subsystem {
    public:
-      Drivetrain(std::vector<Motor> left_motors, std::vector<Motor> right_motors);
+      Drivetrain(std::vector<DigitalMotor> left_motors, std::vector<DigitalMotor> right_motors);
       void periodic();
       void setBothOutputs (double left_output, double right_output);
    private:
-      std::vector<Motor> leftMotors;
-      std::vector<Motor> rightMotors;
+      std::vector<DigitalMotor> leftMotors;
+      std::vector<DigitalMotor> rightMotors;
 };

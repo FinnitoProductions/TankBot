@@ -7,5 +7,5 @@
 
 class Subsystem {
    private:
-      virtual void periodic();
+      void periodic();
 };

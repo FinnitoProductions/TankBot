@@ -8,7 +8,7 @@
 #include <drivetrain.hpp>
 #include <iostream>
 
-Drivetrain::Drivetrain (std::vector<Motor> left_motors, std::vector<Motor> right_motors) {
+Drivetrain::Drivetrain(std::vector<DigitalMotor> left_motors, std::vector<DigitalMotor> right_motors) {
    leftMotors = left_motors;
    rightMotors = right_motors;
 }
@@ -32,10 +32,10 @@ void Drivetrain::periodic() {
 }
 
 void Drivetrain::setBothOutputs (double left_output, double right_output) {
-   for (Motor m : leftMotors) {
+   for (DigitalMotor m : leftMotors) {
       m.setOutput(left_output);
    }
-   for (Motor m : rightMotors) {
+   for (DigitalMotor m : rightMotors) {
       m.setOutput(right_output);
    }
 }
