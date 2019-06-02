@@ -21,7 +21,6 @@ int main() {
                          {DigitalMotor(FORWARD_RIGHT_DRIVE, REVERSE_RIGHT_DRIVE, ENABLE_RIGHT_DRIVE)});
    while (true) {
       drivetrain.periodic();
-      std::this_thread::sleep_for(std::chrono::seconds(1));
    }
    
    gpioTerminate(); 
