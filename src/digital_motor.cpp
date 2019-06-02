@@ -6,6 +6,7 @@
 */
 
 #include <digital_motor.hpp>
+#include <iostream>
 
 
 /**
@@ -27,6 +28,7 @@ DigitalMotor::DigitalMotor(const int forward_pin, const int reverse_pin, const i
 * @param output the output at which to drive the motor [-1, 1]
 */
 void DigitalMotor::setOutput (const double output) {
+   std::cout << output << std::endl;
    if (output > 0) {
       gpioWrite(FORWARD_PIN, PI_ON);
       gpioWrite(REVERSE_PIN, PI_OFF);

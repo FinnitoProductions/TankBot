@@ -12,12 +12,17 @@
 #ifndef DRIVETRAIN_H
 #define DRIVETRAIN_H
 
-const char FORWARD_CHAR = 'w';
-const char REVERSE_CHAR = 's';
-const char LEFT_CHAR = 'a';
-const char RIGHT_CHAR = 'd';
-const char STOP_CHAR = 'o';
-const char MAX_DIGITAL_OUTPUT = 1; // the maximum output percent when the motors are being enabled as on/off
+static const char FORWARD_CHAR = 'w';
+static const char REVERSE_CHAR = 's';
+static const char LEFT_CHAR = 'a';
+static const char RIGHT_CHAR = 'd';
+static const char SLOW_DOWN_CHAR = 'l';
+static const char SPEED_UP_CHAR = 'u';
+static const char STOP_CHAR = 'o';
+
+static const double SLOW_DOWN_RATE = 0.8;
+
+extern double maxDigitalOutput; // the maximum output percent when the motors are being enabled as on/off
 
 class Drivetrain : public Subsystem {
    public:
@@ -27,6 +32,8 @@ class Drivetrain : public Subsystem {
    private:
       std::vector<DigitalMotor> leftMotors;
       std::vector<DigitalMotor> rightMotors;
+      double leftOutput;
+      double rightOutput;
 };
 
 #endif // DRIVETRAIN_H
