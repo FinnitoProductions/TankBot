@@ -5,7 +5,7 @@
  * @since 6/1/19
 */
 
-#include <motor.h>
+#include <motor.hpp>
 #include <pigpio.h>
 
 const int PWM_OUTPUT_RANGE = 255; // the distance between minimum and maximum possible PWM output

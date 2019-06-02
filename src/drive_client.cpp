@@ -7,8 +7,8 @@
 
 #include <pigpio.h>
 #include <iostream>
-#include <motor.h>
-#include <robot_map.h>
+#include <motor.hpp>
+#include <robot_map.hpp>
 
 int main() {
    std::cout << "Testing driving!" << std::endl;
