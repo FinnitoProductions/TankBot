@@ -20,7 +20,6 @@ DigitalMotor::DigitalMotor(const int forward_pin, const int reverse_pin, const i
    gpioSetMode(FORWARD_PIN, PI_OUTPUT);
    gpioSetMode(REVERSE_PIN, PI_OUTPUT); 
    gpioSetMode(ENABLE_PIN, PI_OUTPUT);
-   prevOutput = 0;
 } 
 
 /**
@@ -34,19 +33,13 @@ void DigitalMotor::setOutput (double output) {
       gpioWrite(FORWARD_PIN, PI_ON);
       gpioWrite(REVERSE_PIN, PI_OFF);
       gpioPWM(ENABLE_PIN, output * PWM_OUTPUT_RANGE);
-      prevOutput = output;
    } else if (output < -OUTPUT_DEADBAND) {
       gpioWrite(FORWARD_PIN, PI_OFF);
       gpioWrite (REVERSE_PIN, PI_ON);
       gpioPWM(ENABLE_PIN, -output * PWM_OUTPUT_RANGE);
-      prevOutput = -output;
    }
    else {
-      if (prevOutput != 0) {
-         gpioWrite(FORWARD_PIN, PI_OFF);
-         gpioWrite(REVERSE_PIN, PI_OFF);
-         gpioPWM(ENABLE_PIN, PI_OFF);
-      }
-      prevOutput = 0;
+      gpioWrite(FORWARD_PIN, PI_OFF);
+      gpioWrite(REVERSE_PIN, PI_OFF);
    }
 }

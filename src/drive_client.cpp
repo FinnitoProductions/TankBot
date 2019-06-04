@@ -23,10 +23,9 @@ int main() {
 
    InputReceiver irTrigger(CH2_TRIGGER_INPUT);
    InputReceiver irWheel(CH1_WHEEL_INPUT);
-   InputReceiver ir3(CH3_INPUT, [](float ch3){exit(0); return ch3;});
+   InputReceiver ir3(CH3_INPUT);
 
-   while (true) {
-      // drivetrain.periodic();
+    while (true) {	   
       drivetrain.setBothOutputs(ir3.getCurrentInput() * irTrigger.getCurrentInput() + irWheel.getCurrentInput(), ir3.getCurrentInput() * irTrigger.getCurrentInput() - irWheel.getCurrentInput());
       std::this_thread::sleep_for(std::chrono::milliseconds(100));
    }
