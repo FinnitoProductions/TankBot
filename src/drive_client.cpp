@@ -12,6 +12,7 @@
 #include <drivetrain.hpp>
 #include <chrono>
 #include <thread>
+#include <input_receiver.hpp>
 
 int main() {
    std::cout << "Testing driving!" << std::endl;
@@ -19,9 +20,12 @@ int main() {
 
    Drivetrain drivetrain({DigitalMotor(FORWARD_LEFT_DRIVE, REVERSE_LEFT_DRIVE, ENABLE_LEFT_DRIVE)}, 
                          {DigitalMotor(FORWARD_RIGHT_DRIVE, REVERSE_RIGHT_DRIVE, ENABLE_RIGHT_DRIVE)});
+
+   InputReceiver ir(18);
    while (true) {
-      drivetrain.periodic();
+      // drivetrain.periodic();
    }
+
    
    gpioTerminate(); 
 }
