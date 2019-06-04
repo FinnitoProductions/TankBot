@@ -23,7 +23,7 @@ int main() {
 
    InputReceiver irTrigger(CH2_TRIGGER_INPUT);
    InputReceiver irWheel(CH1_WHEEL_INPUT);
-   InputReceiver ir3(CH3_INPUT);
+   InputReceiver ir3(CH3_INPUT, [](float ch3){exit(0); return ch3;});
 
    while (true) {
       // drivetrain.periodic();

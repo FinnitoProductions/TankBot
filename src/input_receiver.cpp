@@ -9,9 +9,11 @@
 #include <pigpio.h>
 #include <iostream>
 #include <tgmath.h>
+#include <functional>
 
-InputReceiver::InputReceiver(int channel_gpio) {
+InputReceiver::InputReceiver(int channel_gpio, std::function<double(double)> input_filter) {
    channelGPIO = channel_gpio;
+   inputFilter = input_filter;
 
    gpioSetMode(channelGPIO, PI_INPUT);
    prevHighTick = gpioTick();
@@ -35,13 +37,16 @@ InputReceiver::InputReceiver(int channel_gpio) {
          */
          double riseToFall = tick - ir->prevHighTick;
          double deviationFromAvg = riseToFall - ir->AVERAGE_RISE_TO_FALL;
-         double resultUnfiltered = deviationFromAvg / ir->MAX_DEVIATION_FROM_AVG; // map the value from [-500, 500] to [-1, 1]
-         double resultFiltered = std::min(1.0, std::max(-1.0, resultUnfiltered)); // constrain result to range between [-1, 1]
+         double result = deviationFromAvg / ir->MAX_DEVIATION_FROM_AVG; // map the value from [-500, 500] to [-1, 1]
+         double resultConstrained = std::min(1.0, std::max(-1.0, result)); // constrain result to range between [-1, 1]
 
-         ir->currentInput = resultFiltered;
+         ir->currentInput = ir->inputFilter(resultConstrained);
+
+         // if (resultConstrained > 0.2 || resultConstrained < -0.2) {
+         //    std::cout << gpio << " " << resultConstrained << std::endl;
+         // }
       }
-
-      // std::cout << gpio << " " << level << " " << ir->prevTick << " " << (tick - ir->prevTick) << std::endl;
+      
       // ir->prevTick = tick;
    }, this);
 }
