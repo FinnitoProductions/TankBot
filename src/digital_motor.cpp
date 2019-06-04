@@ -29,11 +29,11 @@ DigitalMotor::DigitalMotor(const int forward_pin, const int reverse_pin, const i
 */
 void DigitalMotor::setOutput (const double output) {
    std::cout << output << std::endl;
-   if (output > 0) {
+   if (output > OUTPUT_DEADBAND) {
       gpioWrite(FORWARD_PIN, PI_ON);
       gpioWrite(REVERSE_PIN, PI_OFF);
       gpioPWM(ENABLE_PIN, output * PWM_OUTPUT_RANGE);
-   } else if (output < 0) {
+   } else if (output < -OUTPUT_DEADBAND) {
       gpioWrite(FORWARD_PIN, PI_OFF);
       gpioWrite (REVERSE_PIN, PI_ON);
       gpioPWM(ENABLE_PIN, -output * PWM_OUTPUT_RANGE);
