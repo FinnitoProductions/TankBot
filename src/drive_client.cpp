@@ -21,9 +21,14 @@ int main() {
    Drivetrain drivetrain({DigitalMotor(FORWARD_LEFT_DRIVE, REVERSE_LEFT_DRIVE, ENABLE_LEFT_DRIVE)}, 
                          {DigitalMotor(FORWARD_RIGHT_DRIVE, REVERSE_RIGHT_DRIVE, ENABLE_RIGHT_DRIVE)});
 
-   InputReceiver ir(18);
+   InputReceiver irTrigger(CH2_TRIGGER_INPUT);
+   InputReceiver irWheel(CH1_WHEEL_INPUT);
+   InputReceiver ir3(CH3_INPUT);
+
    while (true) {
       // drivetrain.periodic();
+      drivetrain.setBothOutputs(ir3.getCurrentInput() * irTrigger.getCurrentInput() + irWheel.getCurrentInput(), ir3.getCurrentInput() * irTrigger.getCurrentInput() - irWheel.getCurrentInput());
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
    }
 
    
