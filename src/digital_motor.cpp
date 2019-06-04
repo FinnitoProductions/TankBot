@@ -27,8 +27,8 @@ DigitalMotor::DigitalMotor(const int forward_pin, const int reverse_pin, const i
 *
 * @param output the output at which to drive the motor [-1, 1]
 */
-void DigitalMotor::setOutput (const double output) {
-   std::cout << output << std::endl;
+void DigitalMotor::setOutput (double output) {
+   output = std::max(-1.0, std::min(1.0, output)); // constrain to range of [-1, 1]
    if (output > OUTPUT_DEADBAND) {
       gpioWrite(FORWARD_PIN, PI_ON);
       gpioWrite(REVERSE_PIN, PI_OFF);
