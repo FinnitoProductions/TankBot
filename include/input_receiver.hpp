@@ -11,10 +11,11 @@
 class InputReceiver {
    public:
       InputReceiver (int channelGPIO);
+      double getCurrentInput();
    private:
       double channelGPIO;
       int prevHighTick;
-      const double AVERAGE_RISE_TO_FALL = 1500.0; // the average distance between the rise and fall
+      const double AVERAGE_RISE_TO_FALL = 1500.0; // the average distance in time (microseconds) between the rise and fall
       const double MAX_DEVIATION_FROM_AVG = 500.0; // the range by which a given rise to fall distance can deviate from the average
       double currentInput;
 };
