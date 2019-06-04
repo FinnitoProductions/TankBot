@@ -13,7 +13,9 @@
 #include <chrono>
 #include <thread>
 #include <input_receiver.hpp>
+#include <math.h>
 
+static const int NUM_CH3_PRESSES_TO_TERMINATE = 3;
 int main() {
    std::cout << "Testing driving!" << std::endl;
    gpioInitialise(); // must be called in any pigpio program before interfacing with GPIO
@@ -23,7 +25,22 @@ int main() {
 
    InputReceiver irTrigger(CH2_TRIGGER_INPUT);
    InputReceiver irWheel(CH1_WHEEL_INPUT);
-   InputReceiver ir3(CH3_INPUT);
+
+   double prevCh3 = 0;
+   double numPressesCh3 = 0;
+   InputReceiver ir3(CH3_INPUT, [&prevCh3, &numPressesCh3](double ch3) {
+      if (numPressesCh3 > NUM_CH3_PRESSES_TO_TERMINATE) {
+         std::cout << "Terminating program." << std::endl;
+         exit(0);
+      }
+      if (prevCh3 != 0 && std::copysign(1, prevCh3) != std::copysign(1, ch3)) { // if the channel 3 value changed signs, it was pressed
+         std::cout << "Channel 3 pressed." << std::endl;
+         numPressesCh3++;
+      }
+
+      prevCh3 = ch3;
+      return ch3;
+   });
 
     while (true) {	   
       drivetrain.setBothOutputs(ir3.getCurrentInput() * irTrigger.getCurrentInput() + irWheel.getCurrentInput(), ir3.getCurrentInput() * irTrigger.getCurrentInput() - irWheel.getCurrentInput());
