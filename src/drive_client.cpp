@@ -43,7 +43,7 @@ int main() {
    });
 
     while (true) {	   
-      drivetrain.setBothOutputs(ir3.getCurrentInput() * irTrigger.getCurrentInput() + irWheel.getCurrentInput(), ir3.getCurrentInput() * irTrigger.getCurrentInput() - irWheel.getCurrentInput());
+      drivetrain.setBothOutputs(irTrigger.getCurrentInput() + irWheel.getCurrentInput(), irTrigger.getCurrentInput() - irWheel.getCurrentInput());
       std::this_thread::sleep_for(std::chrono::milliseconds(100));
    }
 
