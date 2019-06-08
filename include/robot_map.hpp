@@ -16,9 +16,4 @@ const int FORWARD_RIGHT_DRIVE = 2;
 const int REVERSE_RIGHT_DRIVE = 3;
 const int ENABLE_RIGHT_DRIVE = 4;
 
-const int CH1_WHEEL_INPUT = 23;
-const int CH2_TRIGGER_INPUT = 15;
-const int CH3_INPUT = 18; 
-
-
 #endif // ROBOTMAP_H
