@@ -20,7 +20,7 @@ InputDevices::InputDevices() : irWheel(CH1_WHEEL_INPUT),
                                           std::cout << "Terminating program." << std::endl;
                                           exit(0);
                                        }
-                                       if (prevCh3 != 0 && std::copysign(1, prevCh3) != std::copysign(1, ch3)) { // if the channel 3 value changed signs, it was pressed
+                                       if (prevCh3 != 0 && copysign(1, prevCh3) != copysign(1, ch3)) { // if the channel 3 value changed signs, it was pressed
                                           std::cout << "Channel 3 pressed." << std::endl;
                                           numPressesCh3++;
                                        }
