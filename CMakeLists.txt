@@ -14,14 +14,19 @@ set(project_SRCS
   src/digital_motor.cpp
   src/drive_client.cpp
   src/drivetrain.cpp
+  src/input_devices.cpp
   src/input_receiver.cpp
+  src/scheduler.cpp
+  src/subsystem.cpp
   )
 
 set(project_HEADERS
   include/digital_motor.hpp
   include/drivetrain.hpp
+  include/input_devices.hpp
   include/input_receiver.hpp
   include/robot_map.hpp
+  include/scheduler.hpp
   include/subsystem.hpp
   )
 

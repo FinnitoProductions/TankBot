@@ -41,13 +41,7 @@ InputReceiver::InputReceiver(int channel_gpio, std::function<double(double)> inp
          double resultConstrained = std::min(1.0, std::max(-1.0, result)); // constrain result to range between [-1, 1]
 
          ir->currentInput = ir->inputFilter(resultConstrained);
-
-         // if (resultConstrained > 0.2 || resultConstrained < -0.2) {
-         //    std::cout << gpio << " " << resultConstrained << std::endl;
-         // }
       }
-      
-      // ir->prevTick = tick;
    }, this);
 }
 
