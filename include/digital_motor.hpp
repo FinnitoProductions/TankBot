@@ -16,7 +16,7 @@ class DigitalMotor {
    int ENABLE_PIN;
    
    static const int PWM_OUTPUT_RANGE = 255; // the distance between minimum and maximum possible PWM output
-   static constexpr double OUTPUT_DEADBAND = 0.1; // the range of output from zero for which motor output is mere noise
+   static constexpr double OUTPUT_DEADBAND = 0.25; // the range of output from zero for which motor output is mere noise
 
    public:
       DigitalMotor(int forward_pin, int reverse_pin, int enable_pin);
