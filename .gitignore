@@ -34,3 +34,5 @@
 pigpio.h
 
 **/.vscode
+
+build/**

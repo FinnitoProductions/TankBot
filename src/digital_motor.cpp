@@ -41,5 +41,6 @@ void DigitalMotor::setOutput (double output) {
    else {
       gpioWrite(FORWARD_PIN, PI_OFF);
       gpioWrite(REVERSE_PIN, PI_OFF);
+      gpioPWM(ENABLE_PIN, PI_OFF);
    }
 }
