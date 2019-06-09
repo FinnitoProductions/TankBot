@@ -17,8 +17,8 @@
 #include <drivetrain.hpp>
 
 int main() {
-   std::cout << "Testing driving!" << std::endl;
    gpioInitialise(); // must be called in any pigpio program before interfacing with GPIO
+   std::cout << "GPIO initialized." << std::endl;
 
    Drivetrain* d = Drivetrain::getInstance();
 
