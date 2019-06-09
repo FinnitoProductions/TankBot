@@ -14,11 +14,13 @@
 #include <thread>
 #include <input_receiver.hpp>
 #include <math.h>
+#include <drivetrain.hpp>
 
 int main() {
    std::cout << "Testing driving!" << std::endl;
    gpioInitialise(); // must be called in any pigpio program before interfacing with GPIO
 
+   Drivetrain* d = Drivetrain::getInstance();
 
    while (true) {
       Scheduler::getInstance()->run();

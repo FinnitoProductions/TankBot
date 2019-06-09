@@ -31,6 +31,14 @@ InputDevices::InputDevices() : irWheel(CH1_WHEEL_INPUT),
 {
 }
 
+InputDevices* InputDevices::getInstance() {
+   if (instance == nullptr) {
+      instance = new InputDevices();
+   }
+
+   return instance;
+}
+
 InputReceiver InputDevices::getIrTrigger() { return irTrigger; }
 InputReceiver InputDevices::getIrWheel() { return irWheel; }
 InputReceiver InputDevices::getIr3() { return ir3; }
