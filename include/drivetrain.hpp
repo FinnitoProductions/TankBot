@@ -19,6 +19,8 @@ class Drivetrain : public Subsystem {
       void periodic();
       void setBothOutputs (double left_output, double right_output);
       static Drivetrain* getInstance();
+      std::vector<DigitalMotor> getLeftMotors();
+      std::vector<DigitalMotor> getRightMotors();
    private:
       std::vector<DigitalMotor> leftMotors;
       std::vector<DigitalMotor> rightMotors;

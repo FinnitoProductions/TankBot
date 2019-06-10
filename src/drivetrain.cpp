@@ -41,3 +41,6 @@ Drivetrain* Drivetrain::getInstance() {
 
    return instance;
 }
+
+std::vector<DigitalMotor> Drivetrain::getLeftMotors() { return leftMotors; }     
+std::vector<DigitalMotor> Drivetrain::getRightMotors() { return rightMotors; }

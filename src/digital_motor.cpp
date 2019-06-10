@@ -7,6 +7,8 @@
 
 #include <digital_motor.hpp>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 
 /**
@@ -43,4 +45,16 @@ void DigitalMotor::setOutput (double output) {
       gpioWrite(REVERSE_PIN, PI_OFF);
       gpioPWM(ENABLE_PIN, PI_OFF);
    }
+}
+
+/**
+* Plays a sound from the robot for a given number of milliseconds. Relies on the fact that for an output less than the motor
+* deadband, the motors will not move but instead play a sound. 
+*
+* This method can only be called if the motor is not currently moving. If it is moving, it will stop the motor.
+*/
+void DigitalMotor::playSound(int milliseconds) {
+   gpioPWM(ENABLE_PIN, SOUND_OUTPUT);
+   std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+   gpioPWM(ENABLE_PIN, PI_OFF);
 }
