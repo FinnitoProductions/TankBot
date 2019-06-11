@@ -22,10 +22,6 @@ int main() {
 
    Drivetrain* d = Drivetrain::getInstance();
 
-   for (DigitalMotor m : d->getLeftMotors()) {
-      m.playSound(6000);
-   }
-
    while (true) {
       Scheduler::getInstance()->run();
       std::this_thread::sleep_for(std::chrono::milliseconds(5));
